@@ -1,0 +1,41 @@
+
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" >
+    <div class="navbar-brand">ACME Invoicing App</div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+      
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/invoices">Invoices</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" routerLink="/clients">Clients</a>
+        <a class="nav-item nav-link" routerLink="/contact">Contact</a>
+        <a *ngIf="currentUser" class="nav-item nav-link" (click)="logout()"><b>Logout</b></a>
+        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
+        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>
+    </div>
+</nav>
+
+<!-- main content container -->
+<div class="jumbotron">
+    <div class="container">
+   
+          <div class="invoicing-app__container" style="padding-top: 56px;">
+              <alert></alert>
+              <router-outlet></router-outlet>
+       
+        </div>
+    </div>
+</div>
+
+
+<div class="text-center">
+  <p>
+      <a href="/" target="_top">ACME Invoicing App</a>
+  </p>
+  <p>
+      <a href="http://acme.systems" target="_top">acme.systems</a>
+  </p>
+</div>
+

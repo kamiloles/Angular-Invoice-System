@@ -1,0 +1,413 @@
+<div class="container" style="margin-top: 50px;">
+  <div class="panel panel-primary">
+    <form [formGroup]="invoiceForm" novalidate>
+      <div class="panel-heading">
+        <h3>Create new invoice</h3>
+      </div>
+      <div style="padding-top: 30px; padding-bottom: 30px;" class="col-md-3">
+        <p>Choose date:</p>
+        <input
+          type="text"
+          class="form-control"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          #dp="bsDatepicker"
+          formControlName="invoiceDate"
+          bsDatepicker
+          [(bsValue)]="invoiceDate"
+        />
+        <div
+              *ngIf="invoiceForm.controls['invoiceDate'].invalid &&
+                (invoiceForm.controls['invoiceDate'].dirty ||
+                invoiceForm.controls['invoiceDate'].touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceDate'].errors.required">
+                Please set invoice date.
+              </div>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <hr />
+          <br />
+          <h4 style="text-align: center;">Client's data</h4>
+          <div style="margin-top: 50px;" class="panel-body">
+            <div class="form-group">
+              <label class="col-md-4">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceClientFullName"
+                #clientFullName
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceClientFullName'].invalid &&
+                (invoiceForm.controls['invoiceClientFullName'].dirty ||
+                invoiceForm.controls['invoiceClientFullName'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceClientFullName'].errors.required">
+                Full name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4">Company name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceClientCompanyName"
+                #clientCompanyName
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceClientCompanyName'].invalid &&
+                (invoiceForm.controls['invoiceClientCompanyName'].dirty ||
+                invoiceForm.controls['invoiceClientCompanyName'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceClientCompanyName'].errors.required">
+                Company name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4">NIP</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceClientNIP"
+                #clientNIP
+              />
+            </div>
+            <div
+              *ngIf="invoiceForm.controls['invoiceClientNIP'].invalid &&
+                    (invoiceForm.controls['invoiceClientNIP'].dirty ||
+                    invoiceForm.controls['invoiceClientNIP'].touched)"
+              class="alert alert-danger">
+          <div *ngIf="invoiceForm.controls['invoiceClientNIP'].invalid">
+            NIP is required and must be valid.
+          </div>
+        </div>
+            <div class="form-group">
+              <label class="col-md-4">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceClientAddress"
+                #clientAddress
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceClientAddress'].invalid &&
+                (invoiceForm.controls['invoiceClientAddress'].dirty ||
+                invoiceForm.controls['invoiceClientAddress'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceClientAddress'].errors.required">
+                Client address is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4">Zip code</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceClientZipCode"
+                #clientZipCode
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceClientZipCode'].invalid &&
+                (invoiceForm.controls['invoiceClientZipCode'].dirty ||
+                invoiceForm.controls['invoiceClientZipCode'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceClientZipCode'].errors.required">
+                Zip code is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <hr />
+          <br />
+          <h4 style="text-align: center;">Company's data</h4>
+          <div style="margin-top: 50px;" class="panel-body">
+            <div class="form-group">
+              <label class="col-md-4">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceCompanyFullName"
+                #companyFullName
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceCompanyFullName'].invalid &&
+                (invoiceForm.controls['invoiceCompanyFullName'].dirty ||
+                invoiceForm.controls['invoiceCompanyFullName'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceCompanyFullName'].errors.required">
+                Company full name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4">Website</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceCompanyWebsite"
+                #companyWebsite
+              />
+            </div>
+            <div class="form-group">
+              <label class="col-md-4">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceCompanyAddress"
+                #companyAddress
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceCompanyAddress'].invalid &&
+                (invoiceForm.controls['invoiceCompanyAddress'].dirty ||
+                invoiceForm.controls['invoiceCompanyAddress'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceCompanyAddress'].errors.required">
+                Company address is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4">Zip code</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="invoiceCompanyZipCode"
+                #companyZipCode
+              />
+            </div>
+            <div
+              *ngIf="
+              invoiceForm.controls['invoiceCompanyZipCode'].invalid &&
+                (invoiceForm.controls['invoiceCompanyZipCode'].dirty ||
+                invoiceForm.controls['invoiceCompanyZipCode'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="invoiceForm.controls['invoiceCompanyZipCode'].errors.required">
+                Zip code is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <br />
+          <hr />
+          <br />
+          <h4 style="text-align: center; padding-bottom: 30px;">
+            Invoice data
+          </h4>
+          <table class="table">
+            <thead class="thead">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Description</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Cost $</th>
+                <th scope="col">Tax(%)</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Invoice number"
+                    name="number"
+                    formControlName="invoiceNumber"
+                    #invoiceNumber
+                  />
+                  <div *ngIf="invoiceForm.controls['invoiceNumber'].invalid &&
+                      (invoiceForm.controls['invoiceNumber'].dirty ||
+                      invoiceForm.controls['invoiceNumber'].touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="invoiceForm.controls['invoiceNumber'].errors.required">
+                      Please set invoice number.
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add description"
+                    name="description"
+                    formControlName="invoiceDescription"
+                  />
+                  <div *ngIf="invoiceForm.controls['invoiceDescription'].invalid &&
+                      (invoiceForm.controls['invoiceDescription'].dirty ||
+                      invoiceForm.controls['invoiceDescription'].touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="invoiceForm.controls['invoiceDescription'].errors.required">
+                      Please add item description.
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <input
+                    #quantityValue
+                    type="number"
+                    class="form-control"
+                    placeholder="Set quantity"
+                    name="quantity"
+                    [value]="invoice.invoiceQuantity"
+                    formControlName="invoiceQuantity"
+                    [(ngModel)]="quantity"
+                  />
+                  <div *ngIf="invoiceForm.controls['invoiceQuantity'].invalid &&
+                      (invoiceForm.controls['invoiceQuantity'].dirty ||
+                      invoiceForm.controls['invoiceQuantity'].touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="invoiceForm.controls['invoiceQuantity'].errors.required">
+                      Please set item quantity.
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input
+                    #costValue
+                    type="number"
+                    class="form-control"
+                    placeholder="Cost"
+                    name="cost"
+                    [value]="invoice.invoiceCost"
+                    formControlName="invoiceCost"
+                    [(ngModel)]="cost"
+                  />
+                  <div *ngIf="invoiceForm.controls['invoiceCost'].invalid &&
+                      (invoiceForm.controls['invoiceCost'].dirty ||
+                      invoiceForm.controls['invoiceCost'].touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="invoiceForm.controls['invoiceCost'].errors.required">
+                      Please set cost of item.
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input
+                    #taxValue
+                    type="number"
+                    class="form-control"
+                    placeholder="Tax"
+                    name="tax"
+                    [value]="invoice.invoiceTax"
+                    formControlName="invoiceTax"
+                    [(ngModel)]="tax"
+                  />
+                  <div *ngIf="invoiceForm.controls['invoiceTax'].invalid &&
+                      (invoiceForm.controls['invoiceTax'].dirty ||
+                      invoiceForm.controls['invoiceTax'].touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="invoiceForm.controls['invoiceTax'].errors.required">
+                      Please set tax value.
+                    </div>
+                  </div>
+                </td>
+                <td *ngIf="!(quantity && cost)">$0.00</td>
+                <td *ngIf="quantity && cost">${{ quantity * cost }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-md-12">
+              <div style="float: right;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table">
+                      <thead class="thead">
+                        <tr>
+                          <th scope="col">Tax</th>
+                          <th scope="col">Grand Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td *ngIf="!(quantity && cost && tax)">$0.00</td>
+                          <td *ngIf="quantity && cost && tax">
+                            ${{ (quantity * cost * tax) / 100 }}
+                          </td>
+                          <td
+                            *ngIf="!(quantity && cost && tax)"
+                            style="float: right;"
+                          >
+                            $0.00
+                          </td>
+                          <td
+                            *ngIf="quantity && cost && tax"
+                            style="float: right;"
+                          >
+                            ${{
+                              quantity * cost + (quantity * cost * tax) / 100
+                            }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group"
+            style="text-align: center; padding-top: 30px; padding-bottom: 30px;"
+          >
+            <button
+              class="btn btn-success"
+              [disabled]="invoiceForm.pristine || invoiceForm.invalid"
+              style="width: 100%;"
+              [swal]="['Success!', 'Invoice has been created.', 'success']"
+              (click)="
+                addValues(
+                  invoiceNumber.value,
+                  clientFullName.value,
+                  clientCompanyName.value,
+                  clientAddress.value,
+                  clientZipCode.value,
+                  companyFullName.value,
+                  companyWebsite.value,
+                  companyZipCode.value,
+                  quantityValue.value,
+                  costValue.value,
+                  taxValue.value
+                )
+              "
+            >
+              Create Invoice
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

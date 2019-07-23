@@ -1,0 +1,41 @@
+<div *ngIf="isInvoicesDataLoading" class="multi__spinner--container">
+  <div class="multi__spinner">
+    <div class="multi__spinner">
+      <div class="multi__spinner">
+        <div class="multi__spinner">
+          <div class="multi__spinner">
+            <div class="multi__spinner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!isInvoicesDataLoading" style="padding: 20px">
+  <h1 style="padding-bottom: 20px;">Invoices</h1>
+  <div style="padding-bottom: 20px;">
+    <a routerLink="/create-invoice"><button class="btn btn-success"><span style="font-size: 20px">&#43;</span> Create new Invoice</button></a>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Invoice No.</th>
+        <th scope="col">Creation Date</th>
+        <th scope="col">Client Full Name</th>
+        <th scope="col">Client Company Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <th scope="row">{{invoice.invoiceNumber}}</th>
+        <td>{{invoice.invoiceDate | date}}</td>
+        <td>{{invoice.invoiceClientFullName}}</td>
+        <td>{{invoice.invoiceClientCompanyName}}</td>
+        <td><button class="btn btn-danger" (click)="deleteInvoice(invoice.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

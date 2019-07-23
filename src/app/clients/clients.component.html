@@ -1,0 +1,50 @@
+<div *ngIf="isClientsDataLoading" class="multi__spinner--container">
+    <div class="multi__spinner">
+      <div class="multi__spinner">
+        <div class="multi__spinner">
+          <div class="multi__spinner">
+            <div class="multi__spinner">
+              <div class="multi__spinner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="!isClientsDataLoading" style="padding: 20px">
+    <h1 style="padding-bottom: 20px;">Clients</h1>
+    <div style="padding-bottom: 20px;">
+      <a routerLink="/create-client"><button class="btn btn-success"><span style="font-size: 20px">&#43;</span> Create new client</button></a>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Client ID</th>
+          <th scope="col">Full name</th>
+          <th scope="col">NIP</th>
+          <th scope="col">Company name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Email address</th>
+          <th scope="col">Country</th>
+          <th scope="col">Invoices</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <th scope="row">{{client.id}}</th>
+          <td>{{client.fullName}}</td>
+          <td>{{client.nip}}</td>
+          <td>{{client.companyName}}</td>
+          <td>{{client.address}}</td>
+          <td>{{client.email}}</td>
+          <td>{{client.country}}</td>
+          <td *ngFor="let invoice of client.invoices">{{invoice.invoiceClientFullName}}</td>
+          <td *ngIf="!client.invoices">No invoice attached</td>
+          <td><button class="btn btn-danger" (click)="deleteClient(client.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
